@@ -22,5 +22,6 @@ int main() {
   // printf("%p\n", q);
   *q = 12;
   printf("P = %d and q = %d\n", *p, *q);
+  free(q);
   return 0;
 }
