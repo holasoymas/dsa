@@ -62,6 +62,21 @@ void deleteAtBegining(Node **head) {
   tmp = NULL;
 }
 
+Node *findNode(Node **head, int data) {
+  Node *ptr = *head;
+  if (ptr == NULL) {
+    printf("Void finding, search on empty node\n");
+    return ptr;
+  }
+  for (ptr = *head; ptr != NULL; ptr = ptr->next) {
+    if (ptr->data == data) {
+      return ptr;
+    }
+  }
+  printf("No data found \n");
+  return 0;
+}
+
 void displayNode(Node *node) {
   Node *n = node;
   while (n != NULL) {
@@ -88,6 +103,7 @@ int main() {
   insertAtBegining(&head, 15);
   insertAtBegining(&head, 52);
   deleteAtBegining(&head);
+  Node *find = findNode(&head, 2);
   displayNode(head);
   freeNode(&head);
   return 0;
