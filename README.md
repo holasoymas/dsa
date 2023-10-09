@@ -38,7 +38,7 @@ void towers(int n, char from, char to, char aux) {
   towers(n - 1, aux, from, to);
 }
 ```
-## Numbers-of-cores-and-threads 
+## Numbers of cores and threads 
 
 Simple c program to find the numbers of cores and threads in your system 
 
