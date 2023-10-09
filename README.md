@@ -5,6 +5,7 @@ This repository contains various data structures and algorithm problems and thei
 ## Table of Contents
 
 * [Tower of Hanoi](#tower-of-hanoi)
+* [Numbers of Cores and Threads] (#Numbers-of-cores-and-threads)
 
 ## Tower of Hanoi
 
@@ -37,3 +38,24 @@ void towers(int n, char from, char to, char aux) {
   towers(n - 1, aux, from, to);
 }
 ```
+## Numbers-of-cores-and-threads 
+
+Simple c program to find the numbers of cores and threads in your system 
+
+### C solution 
+```
+#include <stdio.h>
+#include <unistd.h>
+
+int getNumberOfCores() { return sysconf(_SC_NPROCESSORS_ONLN); }
+int getNumberOfThreads() { return sysconf(_SC_NPROCESSORS_CONF); }
+
+int main() {
+  int cores = getNumberOfCores();
+  int threads = getNumberOfThreads();
+  printf("Number of CPU cores: %d\n", cores);
+  printf("Number of CPU threads: %d\n", threads);
+  return 0;
+}
+```
+
