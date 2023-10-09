@@ -5,7 +5,7 @@ This repository contains various data structures and algorithm problems and thei
 ## Table of Contents
 
 * [Tower of Hanoi](#tower-of-hanoi)
-* [Numbers Of Cores And Threads] (#numbers-of-cores-and-threads)
+* [Numbers Of Cores And Threads](#numbers-of-cores-and-threads)
 
 ## Tower of Hanoi
 
