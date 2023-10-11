@@ -75,7 +75,9 @@ void deleteDLL(DLL **head, DLL **tail, int data) {
   }
   do {
     if (ptr->data == data) {
+      // Assign the prefious node right data to the next node;
       (ptr->left)->right = ptr->right;
+      // Assign the next node left data to the previous node ;
       (ptr->right)->left = ptr->left;
       free(ptr);
       ptr = NULL;
