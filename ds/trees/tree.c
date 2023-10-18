@@ -234,6 +234,7 @@ void deleteBST(BST **root, int data) {
     // Find the inorder successor of the node and its parent
     BST *succ_parent = node;
     BST *succ = node->right;
+    // Finding the smallest node in right sub-tree
     while (succ->left != NULL) {
       succ_parent = succ;
       succ = succ->left;
@@ -262,6 +263,8 @@ void inOrderTraverse(BST *root) {
   }
 }
 
+void freeBST(BST **root) {}
+
 int main() {
   BST *root = NULL;
   insertBSTRec(&root, 40);
@@ -277,8 +280,8 @@ int main() {
   insertBSTRec(&root, 30);
   insertBSTRec(&root, 45);
   insertBSTRec(&root, 52);
-  insertBSTRec(&root, 57);
-  insertBSTRec(&root, 65);
+  insertBST(&root, 57);
+  insertBST(&root, 65);
   inOrderTraverse(root);
   printf("\n");
   int min = findMin(&root);
