@@ -3,12 +3,13 @@
 
 ## Table of contents
 
-*[Bubble Sort](#bubble-sort)
+* [Bubble Sort](#bubble-sort)
 
 
 ## Bubble sort 
 Bubble sort is a very simple , naive sorting algorithm which sort by comparing the next element to the current element, if the next element is smaller than the current element then they just swap the palces.
-For a better animation video please look here *[Animated bubble sort video](https://www.youtube.com/watch?v=nmhjrI-aW5o)
+
+For a better animation video please look here * [Animated bubble sort video](https://www.youtube.com/watch?v=nmhjrI-aW5o){target="_blank"}
 ## C code for bubble sort 
 ```
 #include <stdio.h>
