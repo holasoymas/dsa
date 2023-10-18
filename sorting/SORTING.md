@@ -7,9 +7,9 @@
 
 
 ## Bubble sort 
-Bubble sort is a very simple , naive sorting algorithm which sort by comparing the next element to the current element of next eleemnt is smaller than the current element they just swap the palces.
-
-# C code for bubble sort 
+Bubble sort is a very simple , naive sorting algorithm which sort by comparing the next element to the current element, if the next element is smaller than the current element then they just swap the palces.
+For a better animation video please look here *[Animated bubble sort video](https://www.youtube.com/watch?v=nmhjrI-aW5o)
+## C code for bubble sort 
 ```
 #include <stdio.h>
 
