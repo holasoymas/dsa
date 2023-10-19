@@ -4,14 +4,14 @@
 ## Table of contents
 
 * [Bubble Sort](#bubble-sort)
-
+* [Selection Sort](#selection-sort)
 
 ## Bubble sort 
 Bubble sort is a very simple , naive sorting algorithm which sort by comparing the next element to the current element, if the next element is smaller than the current element then they just swap the palces.
 
-For a better animation video please look here [Animated bubble sort video](https://www.youtube.com/watch?v=nmhjrI-aW5o)
+For a better understanding please look the following animated video [Animated bubble sort video](https://www.youtube.com/watch?v=nmhjrI-aW5o)
 
-# C code for bubble sort 
+### C code for bubble sort 
 ```
 #include <stdio.h>
 
@@ -40,6 +40,50 @@ int main() {
   }
 
   bubbleSort(n, arr);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+  return 0;
+}
+```
+
+## Selection Sort 
+Selection sort is a simple , naive sorting algorithm which sort items based on minimum's index value. First the index "0" is the minimum index value. It loop through the array and if it find item smaller than the minimum index value they swap places.
+
+For a better understanding please look the following animated video [Animated Selection sort video](https://www.youtube.com/watch?v=xWBP4lzkoyM)
+
+### C code for selection sort
+```
+#include <stdio.h>
+
+void selectionSort(int arr[], int size) {
+  int min_indx, tmp;
+  for (int i = 0; i < size - 1; i++) {
+    min_indx = i;
+    for (int j = i + 1; j < size; j++) {
+      if (arr[min_indx] > arr[j]) {
+        min_indx = j;
+      }
+    }
+    tmp = arr[i];
+    arr[i] = arr[min_indx];
+    arr[min_indx] = tmp;
+  }
+}
+
+int main() {
+  int n;
+  printf("How many elements ? \n");
+  scanf("%d", &n);
+
+  int arr[n];
+  for (int i = 0; i < n; i++) {
+    printf("Enter the %d th element : ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+
+  selectionSort(arr, n);
   for (int i = 0; i < n; i++) {
     printf("%d ", arr[i]);
   }
