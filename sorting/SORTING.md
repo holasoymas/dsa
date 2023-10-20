@@ -91,3 +91,47 @@ int main() {
   return 0;
 }
 ```
+## Insertion Sort
+Insertion sort is a simple sorting algorithm that is efficient for small datasets. It works by dividing the list into a sorted part and an unsorted part. The sorted part initially contains only the first element of the list, and the unsorted part contains the rest of the list. The algorithm iterates through each element in the unsorted part, picking one at a time, and inserts it into its correct position in the sorted part
+
+
+For a better understanding please look the following animated video [Animated Insertion sort video](https://www.youtube.com/watch?v=OGzPmgsI-pQ)
+
+### C code for insertion sort 
+```
+#include<stdio.h>
+
+void insertionSort(int arr[], int size) {
+  int elmnt, j;
+  for (int i = 1; i < size; i++) {
+    elmnt = arr[i];
+    j = i - 1;
+    while (j >= 0 && elmnt < arr[j]) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
+    arr[j + 1] = elmnt;
+  }
+}
+
+int main() {
+
+  int n;
+  printf("How many elements ? \n");
+  scanf("%d", &n);
+
+  int arr[n];
+  for (int i = 0; i < n; i++) {
+    printf("Enter the %d th element : ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+
+  insertionSort(arr, n);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+  return 0;
+}
+```
+
