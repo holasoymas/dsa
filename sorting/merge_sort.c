@@ -55,7 +55,7 @@
 //      | l_len = m-l+1  = 1       |         | l_len = m-l+1  = 1       |
 //      | r_len = r-m   = 1        |         | r_len = r-m   = 1        |
 //      | Creating tmp. array      |         | Creating tmp. array      |
-//   9. | L[l_len], R[r_len]       |      9. | L[l_len], R[r_len]       |
+//   9. | L[l_len], R[r_len]       |     17. | L[l_len], R[r_len]       |
 //      | Cmp val. and place in    |         | Cmp val. and place in    |
 //      | right order & return     |         | right order & return     |
 //      | Its return position is in|         | Its return position is in|
@@ -66,7 +66,7 @@
 //      | mergeSort(0,1)       P.F |         |mergeSort(3,3)            |
 //      | l = 0, r = 1  (r > l)    |         | l=3,r=3 (r !> l ) return |
 //      | m = 0                    |         | in step 15 & agian       |
-//   8. | mergeSort(0,0)       A.E |      8. | mergeSort(4,4) so in     |
+//   8. | mergeSort(0,0)       A.E |     16. | mergeSort(4,4) so in     |
 //      | mergeSort(1,1)       A.E |         | merge(3,3,4) part        |
 //      | merge(0,0,1)       C.R.C |         |                          |
 //      |__________________________|         |__________________________|
