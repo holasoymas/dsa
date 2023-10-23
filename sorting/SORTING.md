@@ -5,6 +5,7 @@
 
 * [Bubble Sort](#bubble-sort)
 * [Selection Sort](#selection-sort)
+* [Insertion Sort](#insertion-sort)
 
 ## Bubble sort 
 Bubble sort is a very simple , naive sorting algorithm which sort by comparing the next element to the current element, if the next element is smaller than the current element then they just swap the palces.
@@ -127,6 +128,90 @@ int main() {
   }
 
   insertionSort(arr, n);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+  return 0;
+}
+```
+## Merge Sort 
+Merge Sort is an efficient, stable, and comparison-based sorting algorithm based on the divide and conquer technique. It works by dividing an array into two halves, recursively sorting each half, and then merging the sorted halves back together
+
+Note: It is not in-memory sorting algorithm. The space complexity is O(n) because all elements are copied into an auxiliary array
+
+For better visualization look at this animation video [Merge Sort Animated video](https://www.youtube.com/watch?v=JSceec-wEyw) 
+
+### Merge Sort in C
+```
+#include<stdio.h>
+
+void merge(int arr[], int l, int m, int r) {
+
+  int l_length = m - l + 1;
+  int r_length = r - m;
+
+  // Creating a temporary Array to hold the value of sub arrays
+  int L[l_length], R[r_length];
+
+  for (int i = 0; i < l_length; i++) {
+    L[i] = arr[l + i];
+  }
+  for (int i = 0; i < r_length; i++) {
+    R[i] = arr[m + 1 + i];
+  }
+
+  int i = 0, j = 0, k = l;
+
+  while (i < l_length && j < r_length) {
+    // Compare the elements of the two subarrays and
+    // place the smaller element into arr[k].
+    if (L[i] > R[j]) {
+      arr[k] = R[j];
+      j++;
+    } else {
+      arr[k] = L[i];
+      i++;
+    }
+    k++;
+  }
+  // Copy any remaining elements of L[] or R[] if there are any.
+
+  while (i < l_length) {
+
+    arr[k] = L[i];
+    i++;
+    k++;
+  }
+  while (j < r_length) {
+
+    arr[k] = R[j];
+    j++;
+    k++;
+  }
+}
+
+void mergeSort(int arr[], int l, int r) {
+  if (l < r) {
+    int m = l + (r - l) / 2;
+    mergeSort(arr, l, m);
+    mergeSort(arr, m + 1, r);
+    merge(arr, l, m, r);
+  }
+}
+
+int main() {
+  int n;
+  printf("How many elements ? \n");
+  scanf("%d", &n);
+
+  int arr[n];
+  for (int i = 0; i < n; i++) {
+    printf("Enter the %d th element : ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+
+  mergeSort(arr, 0, n - 1);
   for (int i = 0; i < n; i++) {
     printf("%d ", arr[i]);
   }
