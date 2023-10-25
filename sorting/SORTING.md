@@ -7,6 +7,12 @@
 * [Selection Sort](#selection-sort)
 * [Insertion Sort](#insertion-sort)
 
+### Efficient algorithms 
+
+* [Merge Sort](#merge-sort)
+* [Quick Sort](#quick-sort)
+
+
 ## Bubble sort 
 Bubble sort is a very simple , naive sorting algorithm which sort by comparing the next element to the current element, if the next element is smaller than the current element then they just swap the palces.
 
@@ -220,3 +226,70 @@ int main() {
 }
 ```
 
+## QUick Sort
+
+Quick sort is a widely used and efficient sorting algorithm that follows a divide-and-conquer approach to sort a list or array of items. The key idea behind quick sort is to select a "pivot" element from the list and partition the other elements into two subarrays – one containing elements less than the pivot and another containing elements greater than the pivot. This process is then recursively applied to the subarrays until the entire list is sorted.
+
+For better visual understanding watch : [Quick sort Animated video](https://www.youtube.com/watch?v=PgBzjlCcFvc)
+
+### C code of Quick sort 
+```
+#include<stdio.h>
+
+int partition(int arr[], int low, int high) {
+  int pivot = arr[high]; // Choose the right most element as pivot
+  int i = low - 1; // Initialize an index i to keep track of the position where
+                   // elements less than the pivot should go.
+  int tmp;
+
+  // Loop through the elements from 'low' to 'high-1'.
+  for (int j = low; j < high; j++) {
+    if (arr[j] < pivot) { // If the curr. element is less than the pivot ,
+      i++;                // Increment the index i to move to the next position.
+      tmp = arr[j];       // Swap arr[i] and arr[j].
+      arr[j] = arr[i];
+      arr[i] = tmp;
+    }
+  }
+  // After the loop, all elements less than the pivot are on the left side of
+  // the array.(which are upto "i"th element)
+
+  tmp = arr[high]; // Swap arr[i+1] and the pivot element (arr[high]).
+  arr[high] = arr[i + 1];
+  arr[i + 1] = tmp;
+
+  return i + 1;
+  // Return the position of the pivot element in its sorted position.
+  // HACK: And remember [i +1] never changes position throught the sorting
+  // proccess as elements less than [i] are smaller than the pivot and elements
+  // grater than [i] are grater than pivot so [i+1] is at the right place
+}
+
+void quickSort(int arr[], int low, int high) {
+  if (low < high) {
+    int pivotIndx = partition(arr, low, high);
+    quickSort(arr, low, pivotIndx - 1);
+    quickSort(arr, pivotIndx + 1, high);
+  }
+}
+
+int main() {
+  int n;
+  printf("How many elements ? \n");
+  scanf("%d", &n);
+
+  int arr[n];
+  for (int i = 0; i < n; i++) {
+    printf("Enter the %d th element : ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+
+  quickSort(arr, 0, n - 1);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+
+  return 0;
+}
+```
