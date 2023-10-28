@@ -1,24 +1,28 @@
 # SORTING ALGORITHMS
 
-
 ## Table of contents
 
-* [Bubble Sort](#bubble-sort)
-* [Selection Sort](#selection-sort)
-* [Insertion Sort](#insertion-sort)
+- [Bubble Sort](#bubble-sort)
+- [Selection Sort](#selection-sort)
+- [Insertion Sort](#insertion-sort)
 
-### Efficient algorithms 
+### Efficient algorithms
 
-* [Merge Sort](#merge-sort)
-* [Quick Sort](#quick-sort)
+- [Merge Sort](#merge-sort)
+- [Quick Sort](#quick-sort)
 
+### Distribution Sorts Algorithms
 
-## Bubble sort 
+- [Bucket Sort](#bucket-sort)
+
+## Bubble sort
+
 Bubble sort is a very simple , naive sorting algorithm which sort by comparing the next element to the current element, if the next element is smaller than the current element then they just swap the palces.
 
 For a better understanding please look the following animated video [Animated bubble sort video](https://www.youtube.com/watch?v=nmhjrI-aW5o)
 
-### C code for bubble sort 
+### C code for bubble sort
+
 ```
 #include <stdio.h>
 
@@ -55,12 +59,14 @@ int main() {
 }
 ```
 
-## Selection Sort 
+## Selection Sort
+
 Selection sort is a simple , naive sorting algorithm which sort items based on minimum's index value. First the index "0" is the minimum index value. It loop through the array and if it find item smaller than the minimum index value they swap places.
 
 For a better understanding please look the following animated video [Animated Selection sort video](https://www.youtube.com/watch?v=xWBP4lzkoyM)
 
 ### C code for selection sort
+
 ```
 #include <stdio.h>
 
@@ -98,13 +104,15 @@ int main() {
   return 0;
 }
 ```
-## Insertion Sort
-Insertion sort is a simple sorting algorithm that is efficient for small datasets. It works by dividing the list into a sorted part and an unsorted part. The sorted part initially contains only the first element of the list, and the unsorted part contains the rest of the list. The algorithm iterates through each element in the unsorted part, picking one at a time, and inserts it into its correct position in the sorted part
 
+## Insertion Sort
+
+Insertion sort is a simple sorting algorithm that is efficient for small datasets. It works by dividing the list into a sorted part and an unsorted part. The sorted part initially contains only the first element of the list, and the unsorted part contains the rest of the list. The algorithm iterates through each element in the unsorted part, picking one at a time, and inserts it into its correct position in the sorted part
 
 For a better understanding please look the following animated video [Animated Insertion sort video](https://www.youtube.com/watch?v=OGzPmgsI-pQ)
 
-### C code for insertion sort 
+### C code for insertion sort
+
 ```
 #include<stdio.h>
 
@@ -141,14 +149,17 @@ int main() {
   return 0;
 }
 ```
-## Merge Sort 
+
+## Merge Sort
+
 Merge Sort is an efficient, stable, and comparison-based sorting algorithm based on the divide and conquer technique. It works by dividing an array into two halves, recursively sorting each half, and then merging the sorted halves back together
 
 Note: It is not in-memory sorting algorithm. The space complexity is O(n) because all elements are copied into an auxiliary array
 
-For better visualization look at this animation video [Merge Sort Animated video](https://www.youtube.com/watch?v=JSceec-wEyw) 
+For better visualization look at this animation video [Merge Sort Animated video](https://www.youtube.com/watch?v=JSceec-wEyw)
 
 ### Merge Sort in C
+
 ```
 #include<stdio.h>
 
@@ -232,7 +243,8 @@ Quick sort is a widely used and efficient sorting algorithm that follows a divid
 
 For better visual understanding watch : [Quick sort Animated video](https://www.youtube.com/watch?v=PgBzjlCcFvc)
 
-### C code of Quick sort 
+### C code for Quick sort
+
 ```
 #include<stdio.h>
 
@@ -285,6 +297,139 @@ int main() {
   }
 
   quickSort(arr, 0, n - 1);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+
+  return 0;
+}
+```
+
+## Bucket Sort
+
+Bucket sort, also known as bin sort, is a distribution-based sorting algorithm. This algorithm works by dividing the elements of an array into several "buckets", and then each bucket is sorted individually, either using a different sorting algorithm or by recursively applying the bucket sorting algorithm.
+
+For better visualization see : [Bubble Sort Animated Video](https://www.youtube.com/watch?v=VuXbEb5ywrU)
+
+We are using **math.h** library here so make sure to link that header file by :
+
+```
+clang bucket_sort.c -lm
+```
+
+### C code for Bucket Sort
+
+```
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+  int data;
+  struct Node *next;
+};
+
+void insertBucket(struct Node **bucket, int data) {
+  struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+  newNode->data = data;
+
+  // if bucket is null set the next value null as there are no elmnts
+  if (*bucket == NULL) {
+    newNode->next = NULL;
+    *bucket = newNode;
+    return;
+  }
+
+  // set the next value points as bucket and make that newNode a head
+  newNode->next = *bucket;
+  *bucket = newNode;
+}
+
+void insertSorted(struct Node **head, struct Node *newNode) {
+
+  // If the list is empty or the new node is smaller than the head node, insert
+  // at the front
+  if (*head == NULL || (*head)->data > newNode->data) {
+    newNode->next = *head;
+    *head = newNode;
+    return;
+  }
+
+  // Find the position to insert the new node
+  struct Node *curr = *head;
+  while (curr->next != NULL && curr->next->data < newNode->data) {
+    curr = curr->next;
+  }
+  // Current position for the data have been found So update the pointer
+  newNode->next = curr->next;
+  curr->next = newNode;
+}
+
+void insertionSort(struct Node **bucket) {
+
+  struct Node *curr = *bucket;
+  struct Node *sorted = NULL;
+  struct Node *next = NULL;
+  while (curr != NULL) {
+    next = curr->next; // This is done here because we might lose next pointer
+                       // while sorting
+    insertSorted(&sorted, curr); // Insert the curr node in the sorted order
+    curr = next;
+  }
+
+  // Now update the bucket pointer to point to the sorted list
+  *bucket = sorted;
+}
+
+void bucketSort(int arr[], int size) {
+  struct Node *Buckets[10];
+
+  // Initialize buckets
+  for (int i = 0; i < 10; i++) {
+    Buckets[i] = NULL;
+  }
+
+  // Find maximum value in arr[]
+  int maxVal = arr[0];
+  for (int i = 1; i < size; i++) {
+    if (arr[i] > maxVal) {
+      maxVal = arr[i];
+    }
+  }
+
+  // Insert elements into appropriate buckets
+  for (int i = 0; i < size; i++) {
+    // Here 10 represent the numbers of buckets , this algorithm places the
+    // number in appropriate place by normalizing
+    int bucketNum = (int)(10.0 * arr[i] / (maxVal + 1));
+    insertBucket(&Buckets[bucketNum], arr[i]);
+  }
+
+  // Sort each bucket and concatenate
+  int indx = 0;
+  for (int i = 0; i < 10; i++) {
+    insertionSort(&Buckets[i]);
+    struct Node *curr = Buckets[i];
+    while (curr != NULL) {
+      arr[indx++] = curr->data;
+      curr = curr->next;
+    }
+  }
+}
+
+int main() {
+  int n;
+  printf("How many elements ? \n");
+  scanf("%d", &n);
+
+  int arr[n];
+  for (int i = 0; i < n; i++) {
+    printf("Enter the %d th element : ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+
+  bucketSort(arr, n);
   for (int i = 0; i < n; i++) {
     printf("%d ", arr[i]);
   }
