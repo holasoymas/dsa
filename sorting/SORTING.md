@@ -448,6 +448,8 @@ Time complexity of Radix Sort is O(nk) where **n** is the number of items in arr
 
 Radix Sort is useful when we have fixed number of digits like phone number, security code number , zip code etc.
 
+For better visualization look : [Radix Sort Animation Video](https://www.youtube.com/watch?v=nu4gDuFabIM)
+
 ### C code of Radix sort 
 ```
 #include<stdio.h>
