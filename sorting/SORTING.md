@@ -14,6 +14,8 @@
 ### Distribution Sorts Algorithms
 
 - [Bucket Sort](#bucket-sort)
+- [Radix Sort](#radix-sort)
+
 
 ## Bubble sort
 
@@ -438,3 +440,82 @@ int main() {
   return 0;
 }
 ```
+
+## Radix Sort 
+Radix Sort is a linear sorting algorithm that sorts data by processing them digit by digit. Rather than comparing elements directly, Radix Sort distributes the elements into buckets based on each digit’s value. By repeatedly sorting the elements by their significant digits, from the least significant to the most significant, Radix Sort achieves the final sorted order.
+
+Time complexity of Radix Sort is O(nk) where **n** is the number of items in array and **k** is the number of digits in the largest number in array.
+
+Radix Sort is useful when we have fixed number of digits like phone number, security code number , zip code etc.
+
+### C code of Radix sort 
+```
+#include<stdio.h>
+
+int findMax(int arr[], int size) {
+  int max = arr[0];
+  for (int i = 1; i < size; i++) {
+    if (arr[i] > max) {
+      max = arr[i];
+    }
+  }
+  return max;
+}
+
+void countingSort(int arr[], int size, int exp) {
+  int countArr[10] = {0};
+
+  // Store count of occurrences in countArr[]
+  for (int i = 0; i < size; i++) {
+    countArr[(arr[i] / exp) % 10]++;
+  }
+
+  // Change countArr[i] so that countArr[i] now contains actual position
+  for (int i = 1; i < 10; i++) {
+    countArr[i] += countArr[i - 1];
+  }
+
+  // Copying the array cause the original array will be altered during
+  //  exchaning data
+  int tmpArr[size];
+  for (int i = 0; i < size; i++) {
+    tmpArr[i] = arr[i];
+  }
+
+  // Finding the appriopriate place to insert
+  for (int i = size - 1; i >= 0; i--) {
+    int indx = (tmpArr[i] / exp) % 10;
+    countArr[indx]--;
+    arr[countArr[indx]] = tmpArr[i];
+  }
+}
+
+void radixSort(int arr[], int size) {
+
+  int max = findMax(arr, size);
+
+  for (int exp = 1; max / exp > 0; exp *= 10) {
+    countingSort(arr, size, exp);
+  }
+}
+
+int main() {
+  int n;
+  printf("How many elements ? \n");
+  scanf("%d", &n);
+
+  int arr[n];
+  for (int i = 0; i < n; i++) {
+    printf("Enter the %d th element : ", i + 1);
+    scanf("%d", &arr[i]);
+  }
+  radixSort(arr, n);
+  for (int i = 0; i < n; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+
+  return 0;
+}
+```
+
