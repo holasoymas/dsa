@@ -56,17 +56,17 @@
 //
 //         z                                     z
 //        / \                                  /   \
-//       y   T4     First RIght Rotate(x)     y     x   Then agn. Left rotate(x)
-//          / \      - - - - - - - - - ->         /  \      - - - - - - - - ->
-//         x   T3                                T1  T4
-//        / \                                       /  \
-//      T1   T2                                    T2   T3             |
-//                                                                          |
-//                                                             T3       <---
-//                                                           /    \
-//                                                          y      z
-//                                                         / \    /  \
-//                                                        x  T1  T2  T4
+//       y   T4     First RIght Rotate(x)     y     x    Again Left rotate(x)
+//          / \      - - - - - - - - - ->         /  \    - - - - - - - - -
+//         x   T3                                T1  T4                   |
+//        / \                                       /  \                  |
+//      T1   T2                                    T2   T3                |
+//                                                                        |
+//                                                             x     <-----
+//                                                           /   \
+//                                                          z     T4
+//                                                         / \   /  \
+//                                                        y  T1  T2  T3
 ///
 //
 
