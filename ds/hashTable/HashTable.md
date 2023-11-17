@@ -134,7 +134,7 @@ certain probing sequence.For example, `linear probing` checks the next slot in a
 
 ```
 Using linear probing,
-Let's say we are again going to insert new key called python and somehow it has same hashCode as lua what do we do ?
+Let's say we are inserting new key called python and somehow it has same hashCode as lua what do we do ?
 We loop through the table to find the next empty slot and put that value there. 
 
  ------ -------
@@ -161,7 +161,8 @@ We loop through the table to find the next empty slot and put that value there.
 |rust  |  50   |
  ------ -------
 
-For eg : Here python and lua has same hashCode so it start doing linear probing and find outs that the box after elixir is empty and put that key value pair there.
+For eg : Here python and lua has same hashCode so it start doing linear probing and 
+find outs that the box after elixir is empty and put that key value pair there.
 
 ------ -------
 |key   | Value |
