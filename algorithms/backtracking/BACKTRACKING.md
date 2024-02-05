@@ -26,6 +26,8 @@
 
 * ```Optimal Solution``` : In optimization problems, the optimal solution is the **best possible solution** among other solutions.
 
+* ```Pruning``` : Eliminating branches or subtrees of the search space that cannot lead to a valid solution.
+
 # BACKTRACKING 
 Backtracking is a systematic way to iterate through all the possible configurations of a **search space**. 
 These **configurations** may represent all possible arrangements of objects (permutations) or all possible 
