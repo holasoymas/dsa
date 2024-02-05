@@ -1,4 +1,4 @@
-#include "stack.h"
+#include "../stack.h"
 #include <stdio.h>
 
 // TODO: [A+B] [{B+D}+C] {V+5} //CORRECT BRACKETS FORMAT
@@ -16,7 +16,7 @@ char matchBraces(char ch) {
 int main(void) {
   Stack s;
   __initStack__(&s);
-  FILE *file = fopen("brackets.txt", "r");
+  FILE *file = fopen("check_right_brackets.txt", "r");
   if (file == NULL) {
     perror("Error occured while opening a file\n");
     return -1;
