@@ -83,3 +83,15 @@ all paths between two vertices, or all possible ways to partition vertices into 
    structure could be rebuilt from scratch from the solution **vector / array** `a`
    as needed,but this is inefficient when each move involves incremental changes
    that can easily be undone.
+
+# Heuristic Search Methods
+
+Heuristic methods provide an alternate way to approach difficult combinatorial
+optimization problems. Backtracking gave us a method to find the best of all pos
+sible solutions, as scored by a given objective function. However, any algorithm
+searching all configurations is doomed to be impossible on large instances.
+
+ ## Different Heuristic Search Methods : 
+    1. Random Sampling 
+    2. Gradient Decent 
+    3. Simulated Annealing 
