@@ -87,11 +87,68 @@ all paths between two vertices, or all possible ways to partition vertices into 
 # Heuristic Search Methods
 
 Heuristic methods provide an alternate way to approach difficult combinatorial
-optimization problems. Backtracking gave us a method to find the best of all pos
-sible solutions, as scored by a given objective function. However, any algorithm
+optimization problems. Backtracking gave us a method to find the best of all possible
+solutions, as scored by a given objective function. However, any algorithm
 searching all configurations is doomed to be impossible on large instances.
 
- ## Different Heuristic Search Methods : 
-    1. Random Sampling 
-    2. Gradient Decent 
-    3. Simulated Annealing 
+## Different Heuristic Search Methods :
+
+- ### **Random Sampling**
+
+  The simplest method to search in a solution space uses random sampling. It is also
+  called the Monte Carlo method. We repeatedly construct random solutions and
+  evaluate them, stopping as soon as we get a **good enough solution, or (more likely)**
+  when we are **tired of waiting**. **_We report the best solution found over the course of our sampling._**
+
+  True random sampling requires that we are able to select elements from the
+  solution space **_uniformly at random_**. This means that each of the elements of the
+  solution space must have an equal probability of being the next candidate selected.
+  Such sampling can be a subtle problem.
+
+```
+random_sampling(tsp_instance *t, int nsamples, tsp_solution *bestsol){
+
+   tsp_solution s;      /* current tsp solution */
+   double best_cost;    /* best cost so far */
+   double cost_now;     /* current cost */
+   int i;               /* counter */
+
+   initialize_solution(t->n,&s);
+   best_cost = solution_cost(&s,t);
+   copy_solution(&s,bestsol);
+
+   for (i=1; i<=nsamples; i++) {
+      random_solution(&s);
+      cost_now = solution_cost(&s,t);
+         // If cost_now is lower than known best_cost, set cost_now as the best cost
+         if (cost_now < best_cost) {
+         best_cost = cost_now;
+         copy_solution(&s,bestsol);
+         }
+      }
+    }
+```
+
+### When might random sampling do well?
+
+1.  **When there are a high proportion of acceptable solutions :** Finding a piece of
+    hay in a haystack is easy, since almost anything you grab is a straw. When
+    solutions are plentiful, a random search should find one quickly.
+
+    Finding prime numbers is domain where a random search proves successful.
+    Generating large random prime numbers for keys is an important aspect of
+    cryptographic systems such as RSA. Roughly one out of every ln n integers
+    are prime, so only a modest number of samples need to be taken to discover
+    primes that are several hundred digits long.
+
+2.  **When there is no coherence in the solution space :** Random sampling is the
+    right thing to do when there is **no sense** of when we are getting **_closer_** to a
+    solution. Suppose you wanted to find one of your friends who has a social
+    security number that ends in 00. There is not much you can hope to do but
+    tap an arbitrary **fellow/person** on their shoulder and ask. No cleverer method will be
+    better than random sampling.
+
+## Other Heuristics Method includes :
+
+- Gradient Decent
+- Simulated Annealing
